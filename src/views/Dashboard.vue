@@ -1,9 +1,10 @@
 <template>
   <div class="flex flex-wrap px-6 py-6 bg-red-700s">
     <div class="flex justify-between w-full">
-      <CardDashboard title="Usuários Cadastrados" :quantity="usersCount" :date="getToday()"/>
-      <CardDashboard title="Viagens Solicitadas" :quantity="travelCount" :date="getToday()"/>
-      <CardDashboard title="Viagens Aprovadas" :quantity="approvedCount" :date="getToday()"/>
+      
+      <CardDashboard :title="t('usersRegistered')" :quantity="usersCount" :date="getToday()"/>
+      <CardDashboard :title="t('title')" :quantity="travelCount" :date="getToday()"/>
+      <CardDashboard :title="t('tripsApproved')" :quantity="approvedCount" :date="getToday()"/>
     </div>
 
     <div class="w-full mt-10 bg-white block sm:flex items-center justify-between lg:mt-10">

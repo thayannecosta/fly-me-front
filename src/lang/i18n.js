@@ -25,6 +25,10 @@ const messages = {
     loading: 'Loading...',
     actions: 'Actions',
     filter: 'Filter',
+    usersRegistered:"Users Registered",
+    tripsApproved:"Trips Approved",
+    lastUpdated:"Last Updated",
+
 
     // Login / Logout
     loginSuccess: 'Login successful!',
@@ -75,6 +79,9 @@ const messages = {
     loading: 'Carregando...',
     actions: 'Ações',
     filter: 'Filtrar',
+    usersRegistered:"Usuários Cadastrados",
+    tripsApproved:"Viagens Aprovadas",
+    lastUpdated:"Última atualização",
 
     // Login / Logout
     loginSuccess: 'Login realizado com sucesso!',
@@ -124,6 +131,9 @@ const messages = {
     loading: 'Cargando...',
     actions: 'Acciones',
     filter: 'Filtrar',
+    usersRegistered: "Usuarios Registrados",
+    tripsApproved: "Viajes Aprobados",
+    lastUpdated: "Última actualización",
 
     // Login / Logout
     loginSuccess: '¡Inicio de sesión exitoso!',

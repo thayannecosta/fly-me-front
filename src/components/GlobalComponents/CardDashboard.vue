@@ -4,7 +4,7 @@
             <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">{{ title }}</h3>
             <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl dark:text-white">{{ quantity }}</span>
             <p class="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
-              Última Atualização:   {{ date }}
+              {{ t('lastUpdated') }}: {{ date }}
             </p>
         </div>
         
@@ -12,6 +12,10 @@
 </template>
     
 <script setup>
+    import { useI18n } from 'vue-i18n';
+
+    const { t } = useI18n();
+
     const props = defineProps({
         title: String,
         quantity: String,
