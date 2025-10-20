@@ -2,6 +2,7 @@ import { createI18n } from 'vue-i18n'
 
 const messages = {
   en: {
+    // Geral
     welcome: 'Welcome',
     login: 'Login',
     dashboard: 'Dashboard',
@@ -14,11 +15,22 @@ const messages = {
     users: 'Users',
     logout: 'Logout',
     notification: 'Notifications',
-    title:"Travel Requests",
-    solicitate:"New Request",
-    name:"Requester",
-    edit:"Edit",
-    cancelSolicitation:"Cancel Request",
+    title: 'Travel Requests',
+    solicitate: 'New Request',
+    name: 'Requester',
+    edit: 'Edit',
+    cancelSolicitation: 'Cancel Request',
+    filterByStatus: 'Filter by status',
+    statusCancelled: 'Request Cancelled!',
+    loading: 'Loading...',
+    actions: 'Actions',
+    filter: 'Filter',
+
+    // Login / Logout
+    loginSuccess: 'Login successful!',
+    loginError: 'Login failed. Please check your credentials.',
+    logoutSuccess: 'Logout successful!',
+    logoutError: 'Error logging out!',
 
     // Formulário de Solicitação de Viagem
     editRequest: 'Edit Travel Request',
@@ -29,7 +41,7 @@ const messages = {
     pending: 'Pending',
     approved: 'Approved',
     rejected: 'Rejected',
-    cancelled:"Cancelled",
+    cancelled: 'Cancelled',
     create: 'Create',
     update: 'Update',
     sending: 'Sending...',
@@ -37,11 +49,10 @@ const messages = {
     errorSave: 'Failed to save travel request.',
     invalidDeparture: 'Departure date cannot be earlier than today.',
     invalidReturn: 'Return date cannot be earlier than departure date.',
-    loading: 'Loading...',
-    actions:"Actions",
-    filter:"Filter"
   },
+
   pt: {
+    // Geral
     welcome: 'Bem-vinda',
     login: 'Entrar',
     dashboard: 'Dashboard',
@@ -54,13 +65,22 @@ const messages = {
     users: 'Usuários',
     logout: 'Sair',
     notification: 'Notificações',
-    title:"Solicitações de Viagens",
-    filterByStatus:"Filtrar por status",
-    solicitate:"Solicitar Viagem",
-    name:"Solicitante",
-    edit:"Editar",
-    cancelSolicitation:"Cancelar Solicitação",
+    title: 'Solicitações de Viagens',
+    filterByStatus: 'Filtrar por status',
+    solicitate: 'Solicitar Viagem',
+    name: 'Solicitante',
+    edit: 'Editar',
+    cancelSolicitation: 'Cancelar Solicitação',
+    statusCancelled: 'Solicitação de viagem cancelada!',
+    loading: 'Carregando...',
+    actions: 'Ações',
+    filter: 'Filtrar',
 
+    // Login / Logout
+    loginSuccess: 'Login realizado com sucesso!',
+    loginError: 'Falha ao realizar login. Verifique suas credenciais.',
+    logoutSuccess: 'Logout realizado com sucesso!',
+    logoutError: 'Erro ao realizar logout!',
 
     // Formulário de Solicitação de Viagem
     editRequest: 'Editar Solicitação de Viagem',
@@ -71,7 +91,7 @@ const messages = {
     pending: 'Pendente',
     approved: 'Aprovado',
     rejected: 'Não Aprovado',
-    cancelled:"Cancelado",
+    cancelled: 'Cancelado',
     create: 'Criar',
     update: 'Atualizar',
     sending: 'Enviando...',
@@ -79,12 +99,10 @@ const messages = {
     errorSave: 'Falha ao salvar solicitação de viagem.',
     invalidDeparture: 'A data de ida não pode ser anterior à data atual.',
     invalidReturn: 'A data de volta não pode ser anterior à data de ida.',
-    loading: 'Carregando...',
-    filterByStatus:"Filtrar por status",
-    actions:"Ações",
-    filter:"Filtrar"
   },
+
   es: {
+    // General
     welcome: 'Bienvenida',
     login: 'Iniciar sesión',
     dashboard: 'Tablero',
@@ -97,11 +115,21 @@ const messages = {
     users: 'Usuarios',
     logout: 'Cerrar sesión',
     notification: 'Notificaciones',
-    title:"Solicitud de Viaje",
-    filterByStatus:"Filtrar por el Estado",
-    name:"Solicitante",
-    edit:"Editar",
-    cancelSolicitation:"Cancelar Solicitud",
+    title: 'Solicitudes de Viaje',
+    filterByStatus: 'Filtrar por el Estado',
+    name: 'Solicitante',
+    edit: 'Editar',
+    cancelSolicitation: 'Cancelar Solicitud',
+    statusCancelled: '¡Solicitud cancelada!',
+    loading: 'Cargando...',
+    actions: 'Acciones',
+    filter: 'Filtrar',
+
+    // Login / Logout
+    loginSuccess: '¡Inicio de sesión exitoso!',
+    loginError: 'Error al iniciar sesión. Verifique sus credenciales.',
+    logoutSuccess: '¡Cerrar sesión correctamente!',
+    logoutError: 'Error al cerrar sesión.',
 
     // Formulario de Solicitud de Viaje
     editRequest: 'Editar Solicitud de Viaje',
@@ -112,23 +140,20 @@ const messages = {
     pending: 'Pendiente',
     approved: 'Aprobado',
     rejected: 'No Aprobado',
-    cancelled:"Cancelado",
+    cancelled: 'Cancelado',
     create: 'Crear',
     update: 'Actualizar',
     sending: 'Enviando...',
-    successSave: 'Datos guardados correctamente!',
+    successSave: '¡Datos guardados correctamente!',
     errorSave: 'Error al guardar la solicitud de viaje.',
     invalidDeparture: 'La fecha de salida no puede ser anterior a hoy.',
     invalidReturn: 'La fecha de regreso no puede ser anterior a la de salida.',
-    loading: 'Cargando...',
-    actions:"Aciones",
-    filter:"Filtrar"
   },
 }
 
 const i18n = createI18n({
   legacy: false,
-  locale: 'pt',         
+  locale: 'pt',
   fallbackLocale: 'en',
   messages,
 })

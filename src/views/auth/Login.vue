@@ -74,11 +74,11 @@ const submitLogin = async () => {
     });
     
     if(response){
-      toast.success('Login realizado com sucesso!')
+      toast.success(t('loginSuccess'))
       router.push('/')
     }
   } catch (error) {
-    toast.error('Falha ao realizar login. Verifique suas credenciais.')
+    toast.error(t('loginError'))
   } finally {
     loading.value = false
   }

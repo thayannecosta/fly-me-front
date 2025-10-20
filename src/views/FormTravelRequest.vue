@@ -38,7 +38,7 @@
                 <label for="return_date" class="block text-gray-700 font-medium mb-2">Data de Volta</label>
                 <input type="date" id="return_date" v-model="form.return_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
             </div>
-            <div class="mb-4">
+            <div class="mb-4" v-if="isEdit">
                 <label for="status" class="block text-gray-700 font-medium mb-2">Status</label>
                 <select
                 id="status"
@@ -168,13 +168,13 @@
             const returnDate = new Date(`${form.return_date}T00:00:00`)
 
             if (departure < today) {
-                toast.error('A data de ida não pode ser anterior à data atual.')
+                toast.error(t('invalidDeparture'))
                 submitting.value = false
                 return
             }
 
             if (returnDate < departure) {
-                toast.error('A data de volta não pode ser anterior à data de ida.')
+                toast.error(t('invalidReturn'))
                 submitting.value = false
                 return
             }
@@ -190,12 +190,12 @@
             }
 
             if (response) {
-                toast.success('Dados salvos com sucesso!')
+                toast.success(t('successSave'))
                 router.push('/trips')
             }
         } catch (error) {
             console.error(error)
-            toast.error('Falha ao salvar solicitação de viagem.')
+            toast.error(t('errorSave'))
         } finally {
             submitting.value = false
         }
