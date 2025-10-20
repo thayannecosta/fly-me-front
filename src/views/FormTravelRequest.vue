@@ -38,6 +38,20 @@
                 <label for="return_date" class="block text-gray-700 font-medium mb-2">Data de Volta</label>
                 <input type="date" id="return_date" v-model="form.return_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
             </div>
+            <div class="mb-4">
+                <label for="status" class="block text-gray-700 font-medium mb-2">Status</label>
+                <select
+                id="status"
+                v-model="form.status"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                :disabled="!canChangeStatus()"
+                :class="canChangeStatus()?? 'cursor-not-allowed'"
+                >
+                    <option value="pending">Pendente</option>
+                    <option value="approved">Aprovado</option>
+                    <option value="rejected">Não Aprovado</option>
+                </select>
+            </div>
             <button
                 type="submit"
                 :disabled="submitting"
@@ -169,8 +183,6 @@
                 response = await travelStore.actionCreateTravelRequest(form)
             } else {
                 form.user_id = travelStore.travelRequest.travel_request.user.id
-                form.status = travelStore.travelRequest.travel_request.status
-
                 response = await travelStore.actionUpdateTravelRequest(route.params.id, form)
             }
 
@@ -183,6 +195,17 @@
             toast.error('Falha ao salvar solicitação de viagem.')
         } finally {
             submitting.value = false
+        }
+    }
+    const canChangeStatus = ()=> {
+        const user = userStore.userLogged
+        const permissions = user.permissions
+        if (!user){
+            return false
+        } 
+        
+        if (permissions?.some(p => p.name === 'god')) {
+            return true
         }
     }
 
