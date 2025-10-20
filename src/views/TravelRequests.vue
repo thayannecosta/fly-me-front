@@ -175,9 +175,9 @@
             router.push('/travel-request/new');
         }
     }
-    const formatDate = (data) => {
-        const [ano, mes, dia] = data.split('-')
-        return `${dia}/${mes}/${ano}`
+    const formatDate = (date) => {
+        const [year, month, day] = date.split('-')
+        return `${day}/${month}/${year}`
     }
     async function changeStatus(id) {
         const response = await travelStore.actionSetStatusTravelRequest(id,'cancelled');

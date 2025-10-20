@@ -4,7 +4,7 @@
             <div class="px-3 py-3 lg:px-5 lg:pl-3">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center justify-start">
-                            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                            <a href="/dashboard" class="flex items-center space-x-3 rtl:space-x-reverse">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8" width="60" height="60" viewBox="0 0 64 64">
                                     <path d="M2 32 L50 2 L42 32 L60 38 L42 44 L50 62 Z" fill="#1DA1F2"/>
                                     </svg>

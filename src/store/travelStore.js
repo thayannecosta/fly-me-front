@@ -7,6 +7,8 @@ export const useTravelRequestStore = defineStore('travelRequests', {
   state: () => ({
     travelRequests: ref([]),
     travelRequest: ref(null),
+    travelCount: 0,
+    approvedTravelCount: 0
   }),
 
   actions: {
@@ -14,6 +16,14 @@ export const useTravelRequestStore = defineStore('travelRequests', {
       try {
         const response = await apiService.get('travel-requests', { params })
         this.travelRequests.value = response.data.data 
+
+        this.travelCount = Array.isArray(this.travelRequests.value)
+          ? this.travelRequests.value.length
+          : 0
+          
+        this.totalTravelCount()
+
+        
       } catch (error) {
         console.error('Erro ao buscar solicitações de viagem:', error)
       }
@@ -78,6 +88,19 @@ export const useTravelRequestStore = defineStore('travelRequests', {
         console.error('Erro ao atualizar status da solicitação:', error)
         throw error
       }
-    }
+    },    
+    async totalTravelCount() {
+      const list = Array.isArray(this.travelRequests.value) ? this.travelRequests.value : []
+      this.travelCount = list.length
+
+      this.travelCount = Array.isArray(this.travelRequests.value)
+        ? this.travelRequests.value.length
+        : 0      
+
+      this.approvedTravelCount = list.filter(req =>
+        req?.travel_request?.status === 'approved'
+      ).length
+
+    },
   }
 })

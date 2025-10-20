@@ -75,7 +75,7 @@ const submitLogin = async () => {
     
     if(response){
       toast.success(t('loginSuccess'))
-      router.push('/')
+      router.push('/dashboard')
     }
   } catch (error) {
     toast.error(t('loginError'))
