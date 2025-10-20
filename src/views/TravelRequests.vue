@@ -7,22 +7,42 @@
                         <div class="mb-4">
                             <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl">{{t('title')}}</h1>
                         </div>
-                        <div class="sm:flex">
-                            <form class="max-w-sm mx-auto">
-                                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                                    <option selected>{{ t('filterByStatus')}}</option>
-                                    <option value="approved">{{t('approved')}}</option>
-                                    <option value="pending">{{t('pending')}}</option>
-                                    <option value="cancelled">{{t('cancelled')}}</option>
-                                    <option value="rejected">{{ t('rejected')}}</option>
-                                </select>
-                            </form>
-                            <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
-                                <button @click="callFormTravelRequest()" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 sm:w-auto ">
-                                    <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-                                    {{t('solicitate')}}
+                        <div class="flex gap-5">
+                                <div class="mb-4">
+                                    <label for="status" class="block text-gray-700 font-medium mb-2">{{t('status')}}</label>
+                                    <select v-model="filterForm.status" id="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                        <option value="" selected>{{ t('filterByStatus')}}</option>
+                                        <option value="approved">{{t('approved')}}</option>
+                                        <option value="pending">{{t('pending')}}</option>
+                                        <option value="cancelled">{{t('cancelled')}}</option>
+                                        <option value="rejected">{{ t('rejected')}}</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="destination" class="block text-gray-700 font-medium mb-2">{{t('destination')}}</label>
+                                    <input type="text" id="destination" v-model="filterForm.destination" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required/>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="departure_date" class="block text-gray-700 font-medium mb-2">{{t('departureDate')}}</label>
+                                    <input type="date" id="departure_date" v-model="filterForm.departure_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required/>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="return_date" class="block text-gray-700 font-medium mb-2">{{t('returnDate')}}</label>
+                                    <input type="date" id="return_date" v-model="filterForm.return_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                                </div>
+                                <button 
+                                    type="button"
+                                    @click="filterRequests()"
+                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
+                                    {{t('filter')}}
                                 </button>
-                            </div>
+                                <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
+                                    <button @click="callFormTravelRequest()" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 sm:w-auto ">
+                                        <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                                        {{t('solicitate')}}
+                                    </button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -74,17 +94,13 @@
                                                 <button 
                                                     type="button"
                                                     @click="callFormTravelRequest(travel.travel_request.id)"
-                                                    data-modal-target="edit-user-modal"
-                                                    data-modal-toggle="edit-user-modal"
                                                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">
                                                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
                                                     {{t('edit')}}
                                                 </button>
                                                 <button
                                                     type="button"
-                                                    data-modal-target="cancel-solicitation-modal"
-                                                    data-modal-toggle="cancel-solicitation-modal"
-                                                    @click="SetNewStatus"
+                                                    @click="changeStatus(travel.travel_request.id)"
                                                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg"
                                                     :disabled="!canCancel(travel)"
                                                     :class="[
@@ -115,12 +131,19 @@
     import { useUserStore } from '../store/userStore'
     import { useRouter } from 'vue-router'
     import { useI18n } from 'vue-i18n';
+    import { ref } from 'vue';
 
     const { t } = useI18n();
     const router = useRouter();
     const userStore = useUserStore();
     const travelStore = useTravelRequestStore();  
     const travelRequests = computed(() => travelStore.travelRequests ? travelStore.travelRequests.value : '');
+    const filterForm = ref({
+        status: '',
+        departure_date:'',
+        return_date:'',
+        destination:''
+    })
     
     onMounted(async () => {
         await userStore.actionGetMe();
@@ -153,5 +176,11 @@
     const formatDate = (data) => {
         const [ano, mes, dia] = data.split('-')
         return `${dia}/${mes}/${ano}`
+    }
+    async function changeStatus(id) {
+        await travelStore.actionSetStatusTravelRequest(id,'cancelled')
+    }
+    async function filterRequests(){
+        await travelStore.actionFilterTravelRequests(filterForm.value);
     }
 </script>

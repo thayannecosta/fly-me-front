@@ -18,7 +18,14 @@ export const useTravelRequestStore = defineStore('travelRequests', {
         console.error('Erro ao buscar solicitações de viagem:', error)
       }
     },
-
+    async actionFilterTravelRequests(params = {}) {
+      try {
+        const response = await apiService.get('travel-requests', params)
+        this.travelRequests.value = response.data.data 
+      } catch (error) {
+        console.error('Erro ao buscar solicitações de viagem:', error)
+      }
+    },
     async actionCreateTravelRequest(payload) {
       try {
         const response = await apiService.post('travel-request', payload)

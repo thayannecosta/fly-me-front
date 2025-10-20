@@ -38,7 +38,8 @@ const messages = {
     invalidDeparture: 'Departure date cannot be earlier than today.',
     invalidReturn: 'Return date cannot be earlier than departure date.',
     loading: 'Loading...',
-    actions:"Actions"
+    actions:"Actions",
+    filter:"Filter"
   },
   pt: {
     welcome: 'Bem-vinda',
@@ -80,7 +81,8 @@ const messages = {
     invalidReturn: 'A data de volta não pode ser anterior à data de ida.',
     loading: 'Carregando...',
     filterByStatus:"Filtrar por status",
-    actions:"Ações"
+    actions:"Ações",
+    filter:"Filtrar"
   },
   es: {
     welcome: 'Bienvenida',
@@ -119,7 +121,8 @@ const messages = {
     invalidDeparture: 'La fecha de salida no puede ser anterior a hoy.',
     invalidReturn: 'La fecha de regreso no puede ser anterior a la de salida.',
     loading: 'Cargando...',
-    actions:"Aciones"
+    actions:"Aciones",
+    filter:"Filtrar"
   },
 }
 
