@@ -47,9 +47,11 @@
                 :disabled="!canChangeStatus()"
                 :class="canChangeStatus()?? 'cursor-not-allowed'"
                 >
-                    <option value="pending">Pendente</option>
-                    <option value="approved">Aprovado</option>
-                    <option value="rejected">Não Aprovado</option>
+                    <option value="" selected>{{ t('filterByStatus')}}</option>
+                    <option value="approved">{{t('approved')}}</option>
+                    <option value="pending">{{t('pending')}}</option>
+                    <option value="cancelled">{{t('cancelled')}}</option>
+                    <option value="rejected">{{ t('rejected')}}</option>
                 </select>
             </div>
             <button
@@ -118,12 +120,14 @@
     import { useRoute, useRouter } from 'vue-router'
     import { useUserStore } from '../store/userStore'
     import { useToast } from 'vue-toastification'
-
+    import { useI18n } from 'vue-i18n';
+    
     const travelStore = useTravelRequestStore()
     const userStore = useUserStore();
     const route = useRoute()
     const router = useRouter()
     const toast = useToast()
+    const { t } = useI18n();
 
     const isEdit = computed(() => !!route.params.id)
     const loading = ref(true)

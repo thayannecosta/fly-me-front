@@ -44,7 +44,7 @@ const messages = {
   pt: {
     welcome: 'Bem-vinda',
     login: 'Entrar',
-    dashboard: 'Painel',
+    dashboard: 'Dashboard',
     email: 'Email',
     password: 'Senha',
     newRequest: 'Nova Solicitação de Viagem',
