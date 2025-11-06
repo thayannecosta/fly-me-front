@@ -9,18 +9,4 @@ export default {
 
         return response;
     },
-
-    async getUser() {
-        const token = localStorage.getItem('token');
-
-        if (!token) throw new Error('Token not found');
-
-        const response = await api.get(`${API_URL}/me`, {
-        headers: {
-            Authorization: Bearer `${token}`,
-        },
-    });
-    
-    return response.data;
-  },
 };

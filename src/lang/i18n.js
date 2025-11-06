@@ -53,6 +53,7 @@ const messages = {
     errorSave: 'Failed to save travel request.',
     invalidDeparture: 'Departure date cannot be earlier than today.',
     invalidReturn: 'Return date cannot be earlier than departure date.',
+    noTravelRequests: 'No travel requests found.',
   },
 
   pt: {
@@ -106,6 +107,7 @@ const messages = {
     errorSave: 'Falha ao salvar solicitação de viagem.',
     invalidDeparture: 'A data de ida não pode ser anterior à data atual.',
     invalidReturn: 'A data de volta não pode ser anterior à data de ida.',
+    noTravelRequests: 'Nenhuma solicitação de viagem encontrada.',
   },
 
   es: {
@@ -158,6 +160,7 @@ const messages = {
     errorSave: 'Error al guardar la solicitud de viaje.',
     invalidDeparture: 'La fecha de salida no puede ser anterior a hoy.',
     invalidReturn: 'La fecha de regreso no puede ser anterior a la de salida.',
+    noTravelRequests: 'No se encontraron solicitudes de viaje.',
   },
 }
 

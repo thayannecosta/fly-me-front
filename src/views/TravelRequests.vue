@@ -116,6 +116,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <p v-if="travelRequests && !travelRequests.length" class="text-center mt-6">{{ t('noTravelRequests') }}</p>
                             </div>
                         </div>
                     </div>
