@@ -5,7 +5,13 @@
         @submit.prevent="submitLogin"
         class="bg-white dark:bg-gray-800 p-8 rounded shadow-md w-full max-w-sm"
       >
-        <h2 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Login</h2>
+        <div class="flex items-center justify-center mb-6">
+          <a class="flex items-center space-x-3 rtl:space-x-reverse">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8" width="60" height="60" viewBox="0 0 64 64">
+                  <path d="M2 32 L50 2 L42 32 L60 38 L42 44 L50 62 Z" fill="#1DA1F2"/>
+              </svg>
+          </a>
+        </div>
         <label class="block mb-2 text-gray-700 dark:text-gray-200">{{ t('email') }}</label>
         <input
           type="email"

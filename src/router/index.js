@@ -5,6 +5,7 @@ import TravelRequests from '../views/TravelRequests.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Login from '../views/auth/Login.vue'
 import FormTravelRequest from '../views/FormTravelRequest.vue'
+import {useUserStore} from '../store/userStore'
 
 const routes = [
   {
@@ -20,7 +21,8 @@ const routes = [
       { 
         path: '/users',
         name: 'Users',
-        component: Users
+        component: Users,
+        meta: { requiresGod: true }
       },
       {
         path: '/trips',
@@ -51,16 +53,54 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
 })
-router.beforeEach((to, from, next) => {
+
+router.beforeEach(async (to, from, next) => {
   const token = localStorage.getItem('token')
+  const userStore = useUserStore()
 
-
-  if (to.meta.requiresAuth && !token) {
-    next('/login')
-  } else if (to.path === '/login' && token) {
-    next('/')
-  } else {
-    next()
+  if (token && !userStore.userLogged) {
+    try {
+      await userStore.actionGetMe()
+    
+      localStorage.setItem('user', JSON.stringify(userStore.userLogged))
+    } catch (e) {
+      console.error('Erro ao buscar /me no guard:', e)
+      localStorage.removeItem('token')
+      localStorage.removeItem('user')
+    }
   }
+
+  // Proteção de autenticação básica
+  if (to.meta.requiresAuth && !token) {
+    return next('/login')
+  }
+
+  if (to.path === '/login' && token) {
+    return next('/')
+  }
+
+  if (to.meta.requiresGod) {
+    const isGodFromStore = !!userStore.god 
+
+    let isGodFallback = false
+    if (!isGodFromStore) {
+      const userRaw = localStorage.getItem('user')
+      if (userRaw) {
+        try {
+          const user = JSON.parse(userRaw)
+          isGodFallback = user?.permissions?.some(p => p.name === 'god')
+        } catch (err) {
+          console.warn('user no localStorage inválido', err)
+        }
+      }
+    }
+
+    if (!isGodFromStore && !isGodFallback) {
+      return next('/dashboard')
+    }
+  }
+
+  return next()
 })
+
 export default router
